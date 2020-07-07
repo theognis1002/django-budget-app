@@ -1,32 +1,37 @@
 {% extends 'budget/base.html' %}
+{% load humanize %}
 {% block content %}
 
 <div class="container">
 
     <section class="section section-stats">
-        <div class="row">
 
-            <div class="col s12 m12 l4">
+        <div class="row">
+            <h3>{{ project.name }}</h3>
+            <h5>Client: {{ project.client }}</h5>
+            <h5>Due Date: {{ project.due_date }}</h5>
+            <hr>
+            <div class="col s12 m12 l4 budget-card">
                 <div class="card-panel">
                     <h6 class="bold">Total Budget</h6>
-                    <h4 class="bold">${{ project.budget }}</h4>
+                    <h4 class="bold">${{ project.budget|floatformat:2|intcomma }}</h4>
                 </div>
             </div>
 
-            <div class="col s12 m6 l4">
+            <div class="col s12 m6 l4 card-left">
                 <div class="card-panel">
                     <h6 class="bold">Budget Left</h6>
                     {% if project.budget_left > 0 %}
-                        <h4 class="bold green-text">${{ project.budget_left }}</h4>
+                    <h4 class="bold green-text">${{ project.budget_left|floatformat:2|intcomma }}</h4>
                     {% elif project.budget_left == 0 %}
-                        <h4 class="bold orange-text">${{ project.budget_left }}</h4>
+                    <h4 class="bold orange-text">${{ project.budget_left|floatformat:2|intcomma }}</h4>
                     {% else %}
-                        <h4 class="bold red-text">${{ project.budget_left }}</h4>
+                    <h4 class="bold red-text">${{ project.budget_left|floatformat:2|intcomma }}</h4>
                     {% endif %}
                 </div>
             </div>
 
-            <div class="col s12 m6 l4">
+            <div class="col s12 m6 l4 card-right">
                 <div class="card-panel">
                     <h6 class="bold">Total Transactions</h6>
                     <h4 class="bold">{{ project.total_transactions }}</h4>
@@ -38,14 +43,31 @@
 
     <section class="section section-expenses">
         <div class="row">
-            <button class="btn waves-effect right modal-trigger" href="#expenseModal">
-                <i class="material-icons white-text left">add_circle</i>
+            <a class="btn waves-effect right modal-trigger project-btn" href="#expenseModal">
+                <i class="material-icons white-text left">add</i>
                 Add Expense
-            </button>
+            </a>
         </div>
 
         <ul class="z-depth-1">
+            <li>
+                <div class="card-panel z-depth-0 expense">
+                    <div class="row title-row">
+                        <div class="col l6">
+                            <span class="title bold">Expense</span>
+                        </div>
 
+                        <div class="col l3">
+                            <span class="title bold">Cost</span>
+                        </div>
+
+                        <div class="col l">
+                            <span class="title bold">Category</span>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
             {% for expense in expense_list %}
             <li>
                 <div class="card-panel z-depth-0 expense">
@@ -55,15 +77,15 @@
                         </div>
 
                         <div class="col l3">
-                            <span class="title">${{ expense.amount }}</span>
+                            <span class="title">${{ expense.amount|floatformat:2|intcomma }}</span>
                         </div>
 
                         <div class="col l">
-                            <span class="title bold">{{ expense.category.name }}</span>
+                            <span class="title">{{ expense.category.name }}</span>
                         </div>
 
                         <a class="close-icon" onclick="deleteExpense(this)" data-id="{{ expense.id }}">
-                            <i class="material-icons red-text right">close</i>
+                            <i class="material-icons red-text right">delete</i>
                         </a>
                     </div>
                 </div>
@@ -71,7 +93,6 @@
             {% endfor %}
 
         </ul>
-
     </section>
 </div>
 

@@ -1,22 +1,45 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="{% url 'main' %}" class="brand-logo"><i id="logo"
+                class="material-icons white-text left">assignment</i>My Freelance Projects</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'main' %}">Projects</a></li>
+        </ul>
+    </div>
+</nav>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Budget App</title>
-
+    <title>Freelance Projects</title>
+    <link rel='shortcut icon' type='image/x-icon' href='https://img.icons8.com/dusk/64/000000/monitor.png' />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 </head>
-<body>
-    
+<main>
+
     {% block content %}
-    
+
     {% endblock %}
 
-</body>
+</main>
+
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2020 Michael McClelland
+            <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+        </div>
+    </div>
+</footer>
+
 </html>

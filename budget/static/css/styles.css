@@ -1,8 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 
 /* General */
+* {
+    font-family: 'Oswald', Arial, sans-serif;
+}
+
 html {
-    font-family: 'Montserrat';
     background-color: #E0E0E0;
 }
 
@@ -14,6 +18,23 @@ html {
     margin: 0 !important;
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
+}
+
+#logo {
+    margin-left: 15px;
+}
+
+nav, footer, button, .project-btn {
+    background-color: #0068ad !important;
+}
 /* Project List (no projects) */
 
 .noproject-wrapper {
@@ -28,6 +49,10 @@ html {
     margin-bottom: 50px;
 }
 
+.project-card {
+    font-size: 17px;
+}
+
 /* Project Detail Statistics */
 .section-stats h1 {
     font-size: 4vw;
@@ -40,6 +65,18 @@ html {
     }
 }
 
+.budget-card {
+    padding: 0px !important;
+}
+
+.card-left {
+    padding-left: 0px !important;
+}
+
+.card-right {
+    padding-right: 0px !important;
+}
+
  /* Project Add View */
  form ul li.category {
      display: inline-block;
@@ -49,11 +86,15 @@ html {
  }
 
 /* Project Detail Expenses */
+.section-expenses {
+    margin-bottom: 150px;
+}
+
 .section-expenses button {
     padding: 0px 40px;
     font-weight: bold;
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
-    background-color: #6FCF97;
+    background-color: #1797ff;
 }
 
 .section-expenses .expense {
@@ -62,12 +103,23 @@ html {
     margin: 0;
 }
 
+.title-row {
+    font-size: 20px;
+}
+
+li:not(:first-child) {
+    color: rgb(99, 99, 99);
+}
+li:not(:first-child) .expense:hover  {
+    background-color: #ccc !important;
+}
+
 .section-expenses .expense .category {
     font-size: 13px;
 }
 
 .section-expenses li:nth-child(even) .expense {
-    background-color: #F2F2F2;
+    background-color: #E0E0E0;
 }
 
 .section-expenses .close-icon:hover {

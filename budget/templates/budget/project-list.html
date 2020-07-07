@@ -1,8 +1,10 @@
 {% extends 'budget/base.html' %}
+{% load humanize %}
+
 {% block content %}
 
 <div class="container">
-    <h1>My Projects</h1>
+    <h2></h2>
     <hr>
     <div class="row">
         {% for project in project_list %}
@@ -10,7 +12,17 @@
         <div class="col sm12 l3">
             <div class="card-panel">
                 <h5>{{ project.name }}</h5>
-                <a href="{% url 'detail' project.slug %}" class="btn">Visit</a>
+                <ul>
+                    {% if project.client %}
+                    <li class="project-card">Client: {{ project.client }}</li>
+                    {% else %}
+                    {% endif %}
+                    <li class="project-card">Budget: ${{ project.budget|floatformat:2|intcomma }}</li>
+                    <li class="project-card">Due Date: {{ project.due_date }}</li>
+                </ul>
+
+                <a href="{% url 'detail' project.slug %}" class="waves-effect waves-light btn project-btn"><i
+                        class="material-icons left">link</i>Visit</a>
             </div>
         </div>
         {% empty %}
