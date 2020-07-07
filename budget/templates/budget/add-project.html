@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container">
-    <form action="" method="POST">
+    <form class="project-form" action="" method="POST">
         {% csrf_token %}
         {{ form }}
         <label for="categoryInput">Expense Categories (hit enter after every category)</label>
@@ -15,7 +15,9 @@
 
         </ul>
 
-        <button type="submit" class="btn">Start Project</button>
+        <button type="submit" class="btn btn-custom">Create Project</button>
+        <a href="{% url 'main' %}" class="btn red">Cancel</a>
+
     </form>
 </div>
 

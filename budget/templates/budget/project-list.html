@@ -5,7 +5,13 @@
 {% block content %}
 
 <div class="container">
-    <h2></h2>
+    <div class="row">
+        <a class="btn waves-effect waves-light project-add green right" type="submit" name="action"
+            href="{% url 'add' %}">Add
+            Project
+            <i class="material-icons left">add</i>
+        </a>
+    </div>
     <hr>
     <div class="row">
         {% for project in project_list %}

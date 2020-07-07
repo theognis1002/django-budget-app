@@ -12,7 +12,8 @@
                 <i class="material-icons white-text left">check</i>Project Completed!
             </a>
             {% else %}
-            <a onclick="markComplete(this)" data-id="{{ project.id }}" class="btn waves-effect right project-btn">
+            <a onclick="markComplete(this)" data-id="{{ project.id }}"
+                class="btn waves-effect right project-btn">
                 <i class="material-icons white-text left">edit</i>
                 Mark Complete
             </a>
@@ -55,7 +56,7 @@
 
     <section class="section section-expenses">
         <div class="row">
-            <a class="btn waves-effect right modal-trigger project-btn" href="#expenseModal">
+            <a class="btn waves-effect right modal-trigger project-btn green" href="#expenseModal">
                 <i class="material-icons white-text left">add</i>
                 Add Expense
             </a>
@@ -102,6 +103,17 @@
                     </div>
                 </div>
             </li>
+            {% empty %}
+            <li>
+                <div class="card-panel z-depth-0 expense">
+                    <div class="row">
+                        <div class="col l6">
+                            <span class="title">Add expenses to begin tracking project costs.</span>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
             {% endfor %}
 
         </ul>
@@ -111,7 +123,7 @@
 
 <div id="expenseModal" class="modal">
     <div class="modal-content">
-        <h4>Add Expense</h4>
+        <h4>Add New Expense</h4>
 
         <form method="POST">
             {% csrf_token %}
@@ -121,6 +133,7 @@
             <label for="amount">Amount</label>
             <input name="amount" id="amount">
 
+            <label for="category">Category</label>
             <select class="browser-default" name="category">
                 {% for category in category_list %}
                 <option value="{{ category.name }}">{{ category.name }}</option>

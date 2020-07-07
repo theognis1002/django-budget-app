@@ -19,7 +19,7 @@ def project_detail(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
 
     if request.method == "GET":
-        category_list = Category.objects.filter(project=project)
+        category_list = Category.objects.all()
         context = {
             "project": project,
             "expense_list": project.expenses.all(),
@@ -62,7 +62,7 @@ def project_detail(request, project_slug):
 class ProjectCreateView(CreateView):
     model = Project
     template_name = "budget/add-project.html"
-    fields = ("name", "budget")
+    fields = ("name", "client", "budget", "due_date")
 
     def form_valid(self, form):
         self.object = form.save(commit=False)

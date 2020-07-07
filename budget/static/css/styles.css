@@ -57,6 +57,10 @@ nav, footer, button, .project-btn {
     font-size: 17px;
 }
 
+.project-add {
+    margin: 25px 15px 10px 10px;
+}
+
 /* Project Detail Statistics */
 .project-complete {
     background-color: #4CAF50 !important;
@@ -85,6 +89,10 @@ nav, footer, button, .project-btn {
     padding-right: 0px !important;
 }
 
+.browser-default {
+    margin-bottom: 25px;
+}
+
  /* Project Add View */
  form ul li.category {
      display: inline-block;
@@ -92,6 +100,18 @@ nav, footer, button, .project-btn {
      padding: 5px 10px;
      margin-right: 5px;
  }
+
+ .project-form {
+    margin: 50px;
+ }
+
+ .project-form button {
+     background-color: #4CAF50 !important;
+ }
+
+ .btn-custom {
+    font-family: 'Oswald', Arial, sans-serif !important;
+}
 
 /* Project Detail Expenses */
 .section-expenses {
