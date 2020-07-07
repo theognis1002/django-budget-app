@@ -35,6 +35,10 @@ main {
 nav, footer, button, .project-btn {
     background-color: #0068ad !important;
 }
+
+.page-footer {
+    padding-top: 0 !important;
+}
 /* Project List (no projects) */
 
 .noproject-wrapper {
@@ -54,6 +58,10 @@ nav, footer, button, .project-btn {
 }
 
 /* Project Detail Statistics */
+.project-complete {
+    background-color: #4CAF50 !important;
+}
+
 .section-stats h1 {
     font-size: 4vw;
     margin: 15px 0px;

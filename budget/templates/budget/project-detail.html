@@ -1,11 +1,23 @@
 {% extends 'budget/base.html' %}
+{% load static %}
 {% load humanize %}
 {% block content %}
 
 <div class="container">
 
     <section class="section section-stats">
-
+        <div class="row">
+            {% if project.completed %}
+            <a onclick="markComplete(this)" data-id="{{ project.id }}" class="btn waves-effect right project-complete">
+                <i class="material-icons white-text left">check</i>Project Completed!
+            </a>
+            {% else %}
+            <a onclick="markComplete(this)" data-id="{{ project.id }}" class="btn waves-effect right project-btn">
+                <i class="material-icons white-text left">edit</i>
+                Mark Complete
+            </a>
+            {% endif %}
+        </div>
         <div class="row">
             <h3>{{ project.name }}</h3>
             <h5>Client: {{ project.client }}</h5>
@@ -144,5 +156,24 @@
             credentials: 'same-origin',
         })
     }
+
+    function markComplete(e) {
+
+        let id = e.dataset.id
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                'project_id': id
+            }),
+            credentials: 'same-origin',
+        }).then(response => {
+            location.reload();
+        })
+
+    }
 </script>
+
 {% endblock %}

@@ -10,6 +10,7 @@ class Project(models.Model):
     budget = models.IntegerField()
     client = models.CharField(max_length=100, blank=True)
     due_date = models.DateField(default=(datetime.today() + timedelta(days=14)))
+    completed = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -28,7 +29,7 @@ class Project(models.Model):
         return self.name
 
     class Meta:
-        ordering = ("budget", "name")
+        ordering = ("due_date", "name")
 
 
 class Category(models.Model):
