@@ -1,1 +1,1 @@
-# django-budget-app
+# Project Budget App - Built using Django
