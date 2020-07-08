@@ -32,6 +32,11 @@ main {
     margin-left: 15px;
 }
 
+.brand-logo {
+    font-size: 25px !important;
+    text-transform: uppercase;
+}
+
 nav, footer, button, .project-btn {
     background-color: #0068ad !important;
 }
