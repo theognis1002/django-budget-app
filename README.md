@@ -1,4 +1,4 @@
-# Project Budget App - Built using Django
+# Django Budgeting App
 
 1. `virtualenv venv`
 1. `source venv/Scripts/activate` or `source venv/bin/activate`
