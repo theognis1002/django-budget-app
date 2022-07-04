@@ -4,7 +4,9 @@ attrs==19.3.0
 black==19.10b0
 click==7.1.2
 Django==3.1.14
+isort==5.10.1
 pathspec==0.8.0
+python-decouple==3.6
 pytz==2020.1
 regex==2020.6.8
 sqlparse==0.3.1
