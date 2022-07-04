@@ -25,17 +25,20 @@
                     {% else %}
                     {% endif %}
                     <li class="project-card">Budget: ${{ project.budget|floatformat:2|intcomma }}</li>
-
-                    {% if project.due_date|days_until < 15 %}
-                    <li class="project-card red-text bold">DUE IN {{ project.due_date|days_until }} DAYS:
-                        {{ project.due_date }}</li>
-                    {% elif project.due_date|days_until < 0 %}
-                    <li class="project-card">Due Date: {{ project.due_date }} (PAST DUE)</li>
-                    {% elif project.completed %}
-                    <li class="project-card green-text bold">COMPLETED!<i class="material-icons">check</i></li>
-                    {%else %}
-                    <li class="project-card">Due Date: {{ project.due_date }}</li>
-
+                    
+                    {% if project.completed %}
+                        <li class="project-card">Status: <span class="green-text bold">Completed</span></li>
+                    {% else %}
+                        {% if project.due_date|days_until < 15 %}
+                        <li class="project-card red-text bold">DUE IN {{ project.due_date|days_until }} DAYS:
+                            {{ project.due_date }}</li>
+                        {% elif project.due_date|days_until < 0 %}
+                        <li class="project-card">Due Date: {{ project.due_date }} (PAST DUE)</li>
+                        {% elif project.completed %}
+                        <li class="project-card green-text bold">COMPLETED!<i class="material-icons">check</i></li>
+                        {%else %}
+                        <li class="project-card">Due Date: {{ project.due_date }}</li>
+                        {% endif %}
                     {% endif %}
                 </ul>
 

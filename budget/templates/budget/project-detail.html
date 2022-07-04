@@ -56,7 +56,7 @@
 
     <section class="section section-expenses">
         <div class="row">
-            <a class="btn waves-effect right modal-trigger project-btn green" href="#expenseModal">
+            <a class="btn waves-effect right modal-trigger project-btn green {% if project.completed %}disabled{% endif %}" href="#expenseModal">
                 <i class="material-icons white-text left">add</i>
                 Add Expense
             </a>
@@ -96,10 +96,15 @@
                         <div class="col l">
                             <span class="title">{{ expense.category.name }}</span>
                         </div>
-
-                        <a class="close-icon" onclick="deleteExpense(this)" data-id="{{ expense.id }}">
-                            <i class="material-icons red-text right">delete</i>
-                        </a>
+                        {% if project.completed %}
+                            <a class="close-icon" data-id="{{ expense.id }}">
+                                <i class="material-icons white-text right disabled">delete</i>
+                            </a>
+                        {% else %}
+                            <a class="close-icon" onclick="deleteExpense(this)" data-id="{{ expense.id }}">
+                                <i class="material-icons red-text right">delete</i>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </li>

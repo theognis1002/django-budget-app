@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django.db import models
 from django.utils.text import slugify
+from django.utils.functional import cached_property
 
 
 class Project(models.Model):
@@ -16,14 +17,14 @@ class Project(models.Model):
         self.slug = slugify(self.name)
         super(Project, self).save(*args, **kwargs)
 
+    @cached_property
     def budget_left(self):
-        expense_list = Expense.objects.filter(project=self)
-        total_expense_amount = sum([expense.amount for expense in expense_list])
+        total_expense_amount = sum([expense.amount for expense in self.expenses.all()])
         return self.budget - total_expense_amount
 
+    @cached_property
     def total_transactions(self):
-        expense_list = Expense.objects.filter(project=self)
-        return len(expense_list)
+        return len(self.expenses.all())
 
     def __str__(self):
         return self.name
@@ -44,9 +45,7 @@ class Category(models.Model):
 
 
 class Expense(models.Model):
-    project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name="expenses"
-    )
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="expenses")
     title = models.CharField(max_length=100)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

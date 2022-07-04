@@ -28,8 +28,11 @@ def project_detail(request, project_slug):
         return render(request, "budget/project-detail.html", context)
 
     elif request.method == "POST":
+        try:
+            project_id = json.loads(request.body).get("project_id")
+        except json.json.JSONDecodeError:
+            project_id = None
 
-        project_id = json.loads(request.body).get("project_id")
         if project_id:
             # toggles project completion
             project.completed = not project.completed
@@ -45,9 +48,7 @@ def project_detail(request, project_slug):
             category_name = form.cleaned_data["category"]
 
             category = get_object_or_404(Category, project=project, name=category_name)
-            Expense.objects.create(
-                project=project, title=title, amount=amount, category=category
-            ).save()
+            Expense.objects.create(project=project, title=title, amount=amount, category=category).save()
 
     elif request.method == "DELETE":
         id = json.loads(request.body)["id"]
@@ -70,9 +71,7 @@ class ProjectCreateView(CreateView):
 
         categories = self.request.POST["categoriesString"].split(",")
         for category in categories:
-            Category.objects.create(
-                project=Project.objects.get(id=self.object.id), name=category
-            ).save()
+            Category.objects.create(project=Project.objects.get(id=self.object.id), name=category).save()
 
         return HttpResponseRedirect(self.get_success_url())
 
